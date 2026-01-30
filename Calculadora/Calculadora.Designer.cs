@@ -1,6 +1,6 @@
 ﻿namespace Calculadora
 {
-    partial class Form1
+    partial class Calculadora
     {
         /// <summary>
         ///  Required designer variable.

@@ -1,16 +1,21 @@
 namespace Calculadora
 {
-    public partial class Form1 : Form
+    public partial class Calculadora : Form
     {
         double primero;
         double segundo;
         double resultado;
         string operacion;
 
-        public Form1()
+        public Calculadora()
         {
             InitializeComponent();
         }
+
+        Clases.ClsSuma obj = new Clases.ClsSuma();
+        Clases.ClsResta obj2 = new Clases.ClsResta();
+        Clases.ClsMultiplicacion obj3 = new Clases.ClsMultiplicacion();
+        Clases.ClsDivision obj4 = new Clases.ClsDivision();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -99,14 +104,39 @@ namespace Calculadora
         {
             operacion = "Raiz";
             primero = double.Parse(Pantalla.Text);
-            resultado = primero;
-            Pantalla.Text = Math.Sqrt(resultado).ToString();
+            Pantalla.Clear();
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
             segundo = double.Parse(Pantalla.Text);
 
+            double Sum;
+            double Res;
+            double Mul;
+            double Div;
+
+            switch(operacion)
+            {
+                case "+":
+                    Sum = obj.Sumar((primero), (segundo));
+                    Pantalla.Text = Sum.ToString();
+                    break;
+                case "-":
+                    Res = obj2.Resta((primero),(segundo));
+                    Pantalla.Text = Res.ToString();
+                    break;
+                case "*":
+                    Mul = obj3.Multiplicacion((primero), (segundo));
+                    Pantalla.Text = Mul.ToString();
+                    break;
+                case "/":
+                    Div = obj4.Division((primero), (segundo));
+                    Pantalla.Text = Div.ToString();
+                    break;
+            }
+
+            /* SWITCH ANTIGUO DE LA CALCULADORA ANTIGUA
             switch(operacion)
             {
                 case "+":
@@ -126,8 +156,11 @@ namespace Calculadora
                     Pantalla.Text = resultado.ToString();
                     break;
                 case "Raiz":
-
+                    resultado = Math.Sqrt(primero);
+                    Pantalla.Text += resultado.ToString();
+                    break;
             }
+            */
         }
 
         private void btn2_Click(object sender, EventArgs e)
